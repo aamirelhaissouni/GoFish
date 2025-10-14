@@ -31,5 +31,49 @@ int add_card(struct player* target, struct card* new_card){
         current->next = temp;
     }
     target->hand_size++;
-   return 0; 
+   return 0;
 }
+
+/*
+ * Function: remove_card
+ * ---------------------
+ *  Remove a card from the player's hand. 
+ *
+ *  target: the target player
+ *  old_card: pointer to the old card to remove
+ *
+ *  returns: return 0 if no error, non-zero otherwise
+ */
+
+int remove_card(struct player* target, struct card* old_card){
+    struct hand* current_card = target->card_list;
+    struct hand* previous_card = NULL;
+    char current_rank = current_card->top.rank;
+    char current_suit = current_card->top.suit;
+    if(current_card == NULL){
+        //hand is already empty
+        return -1;
+    }
+    while(current_card !=){
+        previous_card = current_card;
+        current_card = current_card->next;
+        if (current_card == NULL){
+            //card not found
+            return -1;
+        }
+    if(previous_card != NULL){
+        previous_card->next = current_card->next;
+    }else{
+        target->card_list = current_card->next; 
+    }
+    }
+}
+
+
+
+
+
+
+
+
+
