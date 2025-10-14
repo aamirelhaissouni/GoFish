@@ -22,7 +22,7 @@ int shuffle(){
     for(int i=0; i<4; i++){
         char current_suit = suits[i];
         for(int j=0; j<13; j++){
-            int deck_index = i*13+j;
+            deck_index = i*13+j;
             char* current_rank = ranks[j];
             struct card card;
             card.suit = current_suit;
@@ -31,28 +31,27 @@ int shuffle(){
         }
     }
 
-//deck shuffling
-//implement shuffling algorithm (Fisher yates algorithm)
-    int x = 0;
-    int min = 1;
-    int max = 51;
-    for(x; x<52; x++){
-        int y = (rand() % (max - min + 1)) + min;
-        deck_instance.list[x] = deck_instance.list[y];
+    if(deck_index != 51){
+        return -1;
     }
 
-    if(deck_index !=51){
-        return -1;
-    }else{
-        return 0;
+//deck shuffling
+//implement shuffling algorithm (Fisher yates algorithm)
+    for(int x=0; x<52; x++){
+        int y = (rand() % (52-x)) + x;
+        struct card temp = deck_instance.list[x];
+        deck_instance.list[x] = deck_instance.list[y];
+        deck_instance.list[y] = temp;
     }
+
+    return 0;
 }
 
 
 int deal_player_cards(struct player *target){
     while(target->hand_size < 7){
        struct card* card = next_card();
-       if(card = NULL){
+       if(card == NULL){
         return -1;
        }
        add_card(target, card); 
