@@ -10,9 +10,11 @@
 struct deck deck_instance;
 
 int shuffle(){
+    fprintf(stdout, "Shuffling.\n");
+    fflush(stdout);
     char suits[4] = {'C', 'D', 'H', 'S'};
     char* ranks[13] = {"2", "3", "4", "5", "6", "7", "8",
-    "9", "10", "J", "K", "A"};
+    "9", "T", "J", "Q", "K", "A"};
 
     int deck_index = 0;
 
@@ -43,7 +45,7 @@ int shuffle(){
         deck_instance.list[x] = deck_instance.list[y];
         deck_instance.list[y] = temp;
     }
-
+    fprintf(stdout, "Deck shuffled!\n");
     return 0;
 }
 
